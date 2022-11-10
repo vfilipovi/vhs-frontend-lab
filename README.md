@@ -1,10 +1,10 @@
 # VHS Rental shop - Blast from the past
 
 Welcome to our frontend laboratory exercise deisgned for aspiring frontend developers like you who want to work with us on amazing projects. :)
-Here you will find the task description along with its requirements. At the end, there is a guidance section where you will find notes on what to do before you start working on the task
-and technologies you may use.
+Here you will find the task description along with its requirements. At the end, there is a guidance section where you will find notes on what
+to do before you start working on the task and technologies you may use.
 
-Keep in mind that it's not neccessary for you to fullfill all the requirements for us to consider you as a worthy candidate. We understand that sometimes you might have other pressing issues or you just have a lot of hobbies or even tasks you're doing for other interviews. Of course, the more you deliver and the cleaner your solution is, we will be able to assess your level of knowledge and experience better.
+Keep in mind that it's not neccessary for you to fulfill all the requirements for us to consider you as a worthy candidate. We understand that sometimes you might have other pressing issues or you just have a lot of hobbies or even tasks you're doing for other interviews. Of course, the more you deliver and the cleaner your solution is, we will be able to assess your level of knowledge and experience better.
 
 Let's go on with the task description now. We wish you happy coding and good luck with this assignment! :D
 
@@ -23,14 +23,14 @@ as well as being able to update existing VHS items or deleting them from the cat
 We will make things a little bit simpler for this version of the lab by not including user management in the frontend. That means that functionalities like
 login, registration, forgotten/reset password or logout are not necessary. Every user can access all the functionalities.
 
-Additionaly, we will provide you with a finished VHS backend service that you can just run and start sending HTTP requests to it and it will just work.
+Additionally, we will provide you with a finished VHS backend service that you can just run and start sending HTTP requests to it and it will just work (unless it doesn't, in which case just email us and will solve the issue :D).
 
 This brings us to the question of what then needs to be done exactly? Well, here is a list of requirements.
 
 #### Requirements
 
 - make a screen that represents the VHS catalogue (list all VHS items available)
-- make a screen where the user can see details of a specific VHS item (screen where user ends up when they click on an item in the catalogue)
+- make a screen where the user can see details of a specific VHS item (screen where the user ends up when they click on an item in the catalogue)
 - make a screen where the user can create a new VHS item that will be submitted to the catalogue (there needs to be a form that the user fills out and then submits it)
 - make a screen where the user can edit an existing VHS item (same form as when creating a new VHS item, but this time the form is automatically filled with existing data and the user can edit it)
 - make it possible for the user to delete an existing VHS item
@@ -53,7 +53,7 @@ Additional info:
 
 #### Bonus requirements related to UI/UX Design
 
-This is an optional list of requirements that you can try to fullfill if you have some past experience with UI/UX Design. Sometimes we need to work out what our screens are going to look like
+This is an optional list of requirements that you can try to fulfill if you have some past experience with UI/UX Design. Sometimes we need to work out what our screens are going to look like
 before implementation and it's always a bonus if you can help out in this manner. Keep in mind that the development part is of the highest priority here, so if you don't have too much time it's better to
 deliver more code than design. :)
 
@@ -81,6 +81,7 @@ You can do whatever you want considering the design. You have full freedom here.
 We use React + Typescript to write frontend for our projects so we would prefer if you also used React. However, it is not necessary at all.
 If you have more experience writing in Vue.js, Angular, Svelte, or just pure JavaScript that's good as well, feel free to implement the solution however you know.
 
-Usage of Typescript is a bonus, but also not necessary.
+Usage of Typescript is a bonus, but also not necessary. Additionally, your application can be a classic Single Page Application (SPA), but you can also use technologies like NextJS which
+allows server side rendering or incremental site regeneration and other cool features.
 
 Just don't write a mobile app, we're targeting browsers, so the only requirement is that your build uses HTML, CSS and JavaScript. :)
