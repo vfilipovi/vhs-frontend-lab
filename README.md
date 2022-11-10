@@ -32,6 +32,7 @@ This brings us to the question of what then needs to be done exactly? Well, here
 - make a screen that represents the VHS catalogue (list all VHS items available)
 - make a screen where the user can see details of a specific VHS item (screen where the user ends up when they click on an item in the catalogue)
 - make a screen where the user can create a new VHS item that will be submitted to the catalogue (there needs to be a form that the user fills out and then submits it)
+- when creating a new VHS item, allow the user to upload a thumbnail image of the movie (see additional info below)
 - make a screen where the user can edit an existing VHS item (same form as when creating a new VHS item, but this time the form is automatically filled with existing data and the user can edit it)
 - make it possible for the user to delete an existing VHS item
 - add a simple search input on the VHS list page where the user will be able to search the catalogue by item title
@@ -49,6 +50,7 @@ Additional info:
   - rentalPrice (price of rental, an integer)
   - rentalDuration (length of one rental in days, e.g. 3 days)
   - quantity (how many tapes of this item are currently available in the shop)
+  - thumbnail (small image that represents the movie, it needs to be uploadable from the user's computer)
 - all of those fields need to be editable as well as show up on the details page of a VHS item
 
 #### Bonus requirements related to UI/UX Design
