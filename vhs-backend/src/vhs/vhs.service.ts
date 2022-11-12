@@ -28,18 +28,25 @@ export class VhsService {
     return vhs;
   }
 
-  createVhs(createVhsDto: CreateVhsDto): Promise<Vhs> {
-    return this.vhsRepository.createVhs(createVhsDto);
+  createVhs(
+    thumbnail: Express.Multer.File,
+    createVhsDto: CreateVhsDto,
+  ): Promise<Vhs> {
+    return this.vhsRepository.createVhs(createVhsDto, thumbnail);
   }
 
-  async updateVhs(id: number, updateVhsDto: UpdateVhsDto): Promise<Vhs> {
+  async updateVhs(
+    id: number,
+    updateVhsDto: UpdateVhsDto,
+    thumbnail: Express.Multer.File,
+  ): Promise<Vhs> {
     const vhs = await this.getVhsById(id);
 
     if (!vhs) {
       throw new NotFoundException(`The specified VHS does not exist.`);
     }
 
-    return this.vhsRepository.updateVhs(vhs, updateVhsDto);
+    return this.vhsRepository.updateVhs(vhs, updateVhsDto, thumbnail);
   }
 
   async deleteVhs(id: number): Promise<void> {

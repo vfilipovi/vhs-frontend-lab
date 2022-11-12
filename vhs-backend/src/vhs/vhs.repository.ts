@@ -8,11 +8,21 @@ import { GetVhsFilterDto } from './dto/get-vhs-filter.dto';
 @EntityRepository(Vhs)
 export class VhsRepository extends Repository<Vhs> {
   async getAllVhs(vhsFilterDto: GetVhsFilterDto): Promise<Vhs[]> {
-    const { genre, isAvailable } = vhsFilterDto;
+    const { title, description, genre, isAvailable } = vhsFilterDto;
     const query = this.createQueryBuilder('vhs');
 
+    if (title) {
+      query.andWhere('vhs.title LIKE :title', { title: `%${title}%` });
+    }
+
+    if (description) {
+      query.andWhere('vhs.description LIKE :description', {
+        description: `%${description}%`,
+      });
+    }
+
     if (genre) {
-      query.andWhere('vhs.genre = :genre', { genre });
+      query.andWhere('vhs.genre LIKE :genre', { genre: `%${genre}%` });
     }
 
     if (isAvailable === true) {
@@ -25,7 +35,10 @@ export class VhsRepository extends Repository<Vhs> {
     return allVhs;
   }
 
-  async createVhs(createVhsDto: CreateVhsDto): Promise<Vhs> {
+  async createVhs(
+    createVhsDto: CreateVhsDto,
+    thumbnail?: Express.Multer.File,
+  ): Promise<Vhs> {
     const {
       title,
       description,
@@ -47,11 +60,19 @@ export class VhsRepository extends Repository<Vhs> {
     vhs.rentalDuration = rentalDuration;
     vhs.quantity = 1;
 
+    if (thumbnail) {
+      vhs.thumbnail = `${thumbnail.destination}/${thumbnail.filename}`;
+    }
+
     await vhs.save();
     return vhs;
   }
 
-  async updateVhs(vhs: Vhs, updateVhsDto: UpdateVhsDto): Promise<Vhs> {
+  async updateVhs(
+    vhs: Vhs,
+    updateVhsDto: UpdateVhsDto,
+    thumbnail?: Express.Multer.File,
+  ): Promise<Vhs> {
     const {
       title,
       description,
@@ -71,6 +92,10 @@ export class VhsRepository extends Repository<Vhs> {
     if (rentalPrice) vhs.rentalPrice = rentalPrice;
     if (rentalDuration) vhs.rentalDuration = rentalDuration;
     if (quantity) vhs.quantity = quantity;
+
+    if (thumbnail) {
+      vhs.thumbnail = `${thumbnail.destination}/${thumbnail.filename}`;
+    }
 
     await vhs.save();
     return vhs;

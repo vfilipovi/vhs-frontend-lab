@@ -5,6 +5,16 @@ export class GetVhsFilterDto {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
+  title?: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  description?: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
   genre?: string;
 
   @IsOptional()

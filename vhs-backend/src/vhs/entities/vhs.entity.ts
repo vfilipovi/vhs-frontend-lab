@@ -28,4 +28,7 @@ export class Vhs extends BaseEntity {
 
   @Column('smallint')
   quantity: number;
+
+  @Column({ nullable: true })
+  thumbnail: string;
 }
