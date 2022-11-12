@@ -5,6 +5,8 @@
 - install Docker on your machine and make sure you can run "docker -v" and "docker compose version" commands
 - install NodeJS 16 and make sure you can run "node -v", "npm -v" and "yarn -v" commands
 
+## Steps to start backend
+
 To start the app, you should clone this repo to your local machine and do the following in your terminal:
 
 - position yourself to project directory in your terminal of choice
