@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  # vhs-rental:
+  #   container_name: vhs-rental
+  #   build: .
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - vhs-database
+  #   links:
+  #     - vhs-database
+
+  vhs-database:
+    container_name: vhs-database
+    image: postgres:14.1-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vhs-database

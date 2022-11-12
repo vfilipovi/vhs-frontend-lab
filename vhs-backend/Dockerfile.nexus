@@ -1,0 +1,35 @@
+FROM registry.access.redhat.com/ubi8/ubi:8.3
+
+LABEL name="Nexus Container Registry" maintainer="Ivan Skorupan <ivan.skorupan@fer.hr>"
+
+ENV NEXUS_HOME=/opt/nexus
+ENV NEXUS_VERSION=3.37.3-02
+
+WORKDIR ${NEXUS_HOME}
+
+ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
+
+# download and unpack Nexus binaries
+RUN curl -L -O ${NEXUS_DOWNLOAD_URL} \
+  && tar -xvzf nexus-${NEXUS_VERSION}-unix.tar.gz \
+  && rm -rf nexus-${NEXUS_VERSION}-unix.tar.gz
+
+# download and install openjdk 8
+# downloads the rpm java package, installs it and then deletes the now unnecessary package rpm
+RUN curl -L -O https://vault.centos.org/8.3.2011/AppStream/x86_64/os/Packages/java-1.8.0-openjdk-headless-1.8.0.282.b08-2.el8_3.x86_64.rpm \
+    && yum localinstall -y --disableplugin=subscription-manager java-1.8.0-openjdk-headless-1.8.0.282.b08-2.el8_3.x86_64.rpm \
+    && rm -rf java-1.8.0-openjdk-headless-1.8.0.282.b08-2.el8_3.x86_64.rpm
+
+RUN useradd -r -s /bin/false -u 200 -c "Nexus Repository Manager user" -d ${NEXUS_HOME} nexus && \
+    usermod -a -G nexus nexus
+  
+USER nexus
+
+VOLUME ${NEXUS_HOME}/sonatype-work
+
+EXPOSE 8081
+EXPOSE 8082
+
+ENV INSTALL4J_ADD_VM_PARAMS="-Xms2703m -Xmx2703m -XX:MaxDirectMemorySize=2703m -Djava.util.prefs.userRoot=${NEXUS_HOME}/sonatype-work/javaprefs"
+
+CMD ["sh", "-c", "${NEXUS_HOME}/nexus-${NEXUS_VERSION}/bin/nexus run"]
