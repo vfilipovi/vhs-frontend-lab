@@ -5,6 +5,8 @@ import { CreateVhsDto } from './dto/create-vhs.dto';
 import { UpdateVhsDto } from './dto/update-vhs.dto';
 import { GetVhsFilterDto } from './dto/get-vhs-filter.dto';
 
+import * as fs from 'fs';
+
 @EntityRepository(Vhs)
 export class VhsRepository extends Repository<Vhs> {
   async getAllVhs(vhsFilterDto: GetVhsFilterDto): Promise<Vhs[]> {
@@ -94,6 +96,12 @@ export class VhsRepository extends Repository<Vhs> {
     if (quantity) vhs.quantity = quantity;
 
     if (thumbnail) {
+      fs.unlink(vhs.thumbnail, (error) => {
+        if (error) {
+          throw error;
+        }
+      });
+
       vhs.thumbnail = thumbnail.path;
     }
 

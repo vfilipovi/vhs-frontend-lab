@@ -7,6 +7,8 @@ import { VhsRepository } from './vhs.repository';
 import { Vhs } from './entities/vhs.entity';
 import { GetVhsFilterDto } from './dto/get-vhs-filter.dto';
 
+import * as fs from 'fs';
+
 @Injectable()
 export class VhsService {
   constructor(
@@ -50,10 +52,17 @@ export class VhsService {
   }
 
   async deleteVhs(id: number): Promise<void> {
-    const result = await this.vhsRepository.delete(id);
+    const vhs = await this.vhsRepository.findOne(id);
 
-    if (!result.affected) {
+    if (!vhs) {
       throw new NotFoundException(`VHS with ID ${id} not found.`);
     }
+
+    await this.vhsRepository.delete(id);
+    fs.unlink(vhs.thumbnail, (error) => {
+      if (error) {
+        throw error;
+      }
+    });
   }
 }

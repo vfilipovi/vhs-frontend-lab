@@ -30,8 +30,9 @@ export class SeedService implements OnApplicationBootstrap {
 
   async onApplicationBootstrap() {
     const seed = parseInt(this.configService.get('SEED_DB'));
+    const usersCount = await this.userRepository.count();
 
-    if (seed) {
+    if (seed && !usersCount) {
       // Seed admin users
       await Promise.all(
         admins.map(async (admin) => {
