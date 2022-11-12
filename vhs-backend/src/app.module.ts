@@ -6,14 +6,9 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { VhsModule } from './vhs/vhs.module';
 import { RentalsModule } from './rentals/rentals.module';
 import { SeedModule } from './seed/seed.module';
-import { join } from 'path';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'static'),
-    }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),

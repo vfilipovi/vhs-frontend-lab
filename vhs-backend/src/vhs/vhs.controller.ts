@@ -54,7 +54,7 @@ export class VhsController {
   @UseInterceptors(
     FileInterceptor(
       'thumbnail',
-      configureImageUpload('./static/images/vhs-thumbnails'),
+      configureImageUpload('./public/images/vhs-thumbnails'),
     ),
   )
   // @Roles(UserRole.ADMIN)
@@ -72,7 +72,7 @@ export class VhsController {
   @UseInterceptors(
     FileInterceptor(
       'thumbnail',
-      configureImageUpload('./static/images/vhs-thumbnails'),
+      configureImageUpload('./public/images/vhs-thumbnails'),
     ),
   )
   // @Roles(UserRole.ADMIN)

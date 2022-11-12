@@ -61,7 +61,7 @@ export class VhsRepository extends Repository<Vhs> {
     vhs.quantity = 1;
 
     if (thumbnail) {
-      vhs.thumbnail = `${thumbnail.destination}/${thumbnail.filename}`;
+      vhs.thumbnail = thumbnail.path;
     }
 
     await vhs.save();
@@ -94,7 +94,7 @@ export class VhsRepository extends Repository<Vhs> {
     if (quantity) vhs.quantity = quantity;
 
     if (thumbnail) {
-      vhs.thumbnail = `${thumbnail.destination}/${thumbnail.filename}`;
+      vhs.thumbnail = thumbnail.path;
     }
 
     await vhs.save();
