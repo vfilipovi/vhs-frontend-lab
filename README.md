@@ -82,7 +82,7 @@ You can do whatever you want considering the design. You have full freedom here.
 
 In this repo you can see the vhs-backend folder which contains a finished VHS backend application written in NestJS (a backend framework based on NodeJS). For details on how to run it, you can check out the README.md file in vhs-backend folder. You will need to have Docker and NodeJS 16 installed for that, but you will find more details in the backend readme file.
 
-The backend also contains the REST API specification you will need to complete this assignment. It uses Swagger UI which is available at "http://localhost:3000/api" once you run the backend server. There you will find all API routes you can call from your frontend as well as their detailed description (what they take as input in the request and return as a response).
+The backend also contains the REST API specification you will need to complete this assignment. It uses Swagger UI which is available at http://localhost:3000/api once you run the backend server. There you will find all API routes you can call from your frontend as well as their detailed description (what they take as input in the request and return as a response).
 
 If you're not able to run the backend or something doesn't work, contact us and we will help you with it.
 
