@@ -4,7 +4,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { typeOrmConfig } from './config/typeorm.config';
 import { VhsModule } from './vhs/vhs.module';
-import { RentalsModule } from './rentals/rentals.module';
 import { SeedModule } from './seed/seed.module';
 
 @Module({
@@ -17,9 +16,7 @@ import { SeedModule } from './seed/seed.module';
       useFactory: async (configService: ConfigService) =>
         typeOrmConfig(configService),
     }),
-    // AuthModule,
     VhsModule,
-    RentalsModule,
     SeedModule,
   ],
 })
