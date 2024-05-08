@@ -95,7 +95,7 @@ export class VhsRepository extends Repository<Vhs> {
     if (rentalDuration) vhs.rentalDuration = rentalDuration;
     if (quantity) vhs.quantity = quantity;
 
-    if (thumbnail) {
+    if (thumbnail && vhs.thumbnail) {
       fs.unlink(vhs.thumbnail, (error) => {
         if (error) {
           throw error;
