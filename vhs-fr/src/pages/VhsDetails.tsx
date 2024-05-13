@@ -4,7 +4,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { VhsData } from "../types/types";
-import { API_URL } from "../utils/constants";
 
 interface DeleteResponse {
   message: string;
@@ -16,7 +15,7 @@ const VhsDetails = () => {
   const navigate = useNavigate();
 
   const getVhs = async (): Promise<VhsData> => {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/${id}`);
     return response.data;
   };
 
@@ -27,8 +26,9 @@ const VhsDetails = () => {
 
   const deleteMutation = useMutation<DeleteResponse, Error>({
     mutationFn: async () => {
-      const response = await axios.delete(`${API_URL}/${id}`);
-      console.log(response, "response");
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/${id}`
+      );
 
       queryClient.invalidateQueries({
         queryKey: ["get-vhs"],

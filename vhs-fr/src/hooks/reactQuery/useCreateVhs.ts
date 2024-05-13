@@ -1,21 +1,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../../utils/constants";
 
 export const useCreateVhs = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: (vhsData: FormData) =>
-      axios
-        .post(`${API_URL}`, vhsData, {
+    mutationFn: async (vhsData: FormData) => {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}`,
+        vhsData,
+        {
           headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => res.data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+        }
+      );
+      return response.data;
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: ["get-vhs"],
       });
       navigate("/");

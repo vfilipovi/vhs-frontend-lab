@@ -7,7 +7,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCreateVhs } from "../hooks/reactQuery/useCreateVhs";
 import { useUpdateVhs } from "../hooks/reactQuery/useUpdateVhs";
-import { API_URL } from "../utils/constants";
 import VhsCreateForm from "../modules/VhsCreateForm";
 
 const schema = z.object({
@@ -48,7 +47,7 @@ const CreateOrEditVhs = () => {
   const updateVhs = useUpdateVhs(+id!);
 
   const getVhs = async (): Promise<VhsData> => {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/${id}`);
     return response.data;
   };
 

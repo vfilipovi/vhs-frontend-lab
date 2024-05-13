@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { VhsData } from "../../types/types";
-import { API_URL } from "../../utils/constants";
 
 export const useVhsSearch = (
   searchTerm: string,
@@ -10,8 +9,10 @@ export const useVhsSearch = (
   const fetchVhs = async (): Promise<VhsData[]> => {
     const url =
       searchTerm.length > 0
-        ? `${API_URL}?title=${encodeURIComponent(searchTerm)}`
-        : API_URL;
+        ? `${import.meta.env.VITE_API_URL}?title=${encodeURIComponent(
+            searchTerm
+          )}`
+        : import.meta.env.VITE_API_URL;
 
     const response = await axios.get(url);
     return response.data;
